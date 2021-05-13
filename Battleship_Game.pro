@@ -13,8 +13,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    enemy.cpp \
-        mainwindow.cpp \
+    mainwindow.cpp \
     cpu.cpp \
     battleshipgame.cpp \
     displayships.cpp \
@@ -28,7 +27,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     cpu.h \
-    enemy.h \
     vars.h \
     battleshipgame.h \
     displayships.h \

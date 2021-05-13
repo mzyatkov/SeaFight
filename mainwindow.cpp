@@ -16,12 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->pushButton_2->setEnabled(false);
-
-    ui->pushButton->hide();
-    ui->pushButton_3->hide();
-    ui->pushButton_4->hide();
-    ui->pushButton_5->hide();
-    ui->pushButton_6->hide();
+    ui->pushButton_3->setEnabled(false);
 
     bsg = new BattleshipGame();
     connect(bsg, SIGNAL(setPhaseText(QString)), this, SLOT(onPhaseTextSet(QString)));
@@ -230,7 +225,9 @@ void MainWindow::NewGame()
 
 
     ui->pushButton_2->setEnabled(false);
-    ui->pushButton_2->setText("Begin Game");
+    ui->pushButton_2->setText("Begin Single");
+    ui->pushButton_3->setEnabled(false);
+    ui->pushButton_3->setText("Begin Multi");
     ui->phaselabel->setText("Place Ships");
     bsg->cpuplayer = new CPU();
 
@@ -312,10 +309,12 @@ void MainWindow::OnDisplayshipClicked(int)
     if(bsg->allHumanShipsArePlaced())
     {
         ui->pushButton_2->setEnabled(true);
+        ui->pushButton_3->setEnabled(true);
     }
     else
     {
         ui->pushButton_2->setEnabled(false);
+        ui->pushButton_3->setEnabled(false);
     }
 }
 
@@ -413,7 +412,8 @@ void MainWindow::on_pushButton_2_clicked()
             break;
         }
 
-        ui->pushButton_2->setText("New Game");
+        ui->pushButton_2->setText("New Singlep");
+        ui->pushButton_3->setText("New Multi");
 
         // TEST CODE
 //        bsg->sinkPlayerShip(2);
@@ -424,3 +424,74 @@ void MainWindow::on_pushButton_2_clicked()
         NewGame();
     }
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    if(bsg->gamephase == placeships)
+    {
+        displayships::phaseIsSetupShips = false;
+
+        for(short int ship = 0; ship < 4; ++ship)
+        {
+            if(displayships::orientations[ship] == 0)
+            {
+                bsg->humanplayer->PlayerShips[ship]->direction = Down;
+                bsg->humanplayer->placeShip(ship+1,displayships::x_pos[ship]/SQUARE,displayships::y_pos[ship]/SQUARE);
+            }
+            else
+            {
+                bsg->humanplayer->PlayerShips[ship]->direction = Left;
+                bsg->humanplayer->placeShip(ship+1,(displayships::x_pos[ship]/SQUARE)-(bsg->humanplayer->PlayerShips[ship]->size),displayships::y_pos[ship]/SQUARE);
+            }
+//DEBUG CODE
+/*            QPen apen(Qt::black);
+            QBrush abrush(Qt::red);
+            for(short int pos = 0; pos < ship+2; ++pos)
+                bsg->scene->addRect(bsg->humanplayer->PlayerShips[ship]->points[pos].x()*SQUARE, bsg->humanplayer->PlayerShips[ship]->points[pos].y()*SQUARE, SQUARE, SQUARE, apen, abrush);
+*/
+        }
+        bsg->cpuplayer->setUpCPUShips();
+
+        bsg->humanplayer->selship[0] = new selectship(bsg->scene3, 3);
+        bsg->scene3->addItem(bsg->humanplayer->selship[0]);
+        connect(bsg, SIGNAL(sinkPlayerShip(int)), bsg->humanplayer->selship[0], SLOT(OnSunk(int)));
+
+        bsg->humanplayer->selship[1] = new selectship(bsg->scene3, 2);
+        bsg->scene3->addItem(bsg->humanplayer->selship[1]);
+        connect(bsg, SIGNAL(sinkPlayerShip(int)), bsg->humanplayer->selship[1], SLOT(OnSunk(int)));
+
+        bsg->humanplayer->selship[2] = new selectship(bsg->scene3, 1);
+        bsg->scene3->addItem(bsg->humanplayer->selship[2]);
+        connect(bsg, SIGNAL(sinkPlayerShip(int)), bsg->humanplayer->selship[2], SLOT(OnSunk(int)));
+
+        bsg->humanplayer->selship[3] = new selectship(bsg->scene3, 0);
+        bsg->scene3->addItem(bsg->humanplayer->selship[3]);
+        connect(bsg, SIGNAL(sinkPlayerShip(int)), bsg->humanplayer->selship[3], SLOT(OnSunk(int)));
+
+
+        switch(randomnum(2))
+        {
+        case 0:
+            bsg->changetoPlayerTurn();
+            break;
+        case 1:
+            bsg->changetoCPUTurn();
+            break;
+        default:
+            qDebug() << "OUR LOGIC IS ABYSMAL";
+            break;
+        }
+
+        ui->pushButton_2->setText("New Single");
+        ui->pushButton_3->setText("New Multi");
+
+        // TEST CODE
+//        bsg->sinkPlayerShip(2);
+  //      bsg->sinkPlayerShip(1);
+    }
+    else
+    {
+        NewGame();
+    }
+}
+
