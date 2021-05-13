@@ -12,33 +12,33 @@ TARGET = Battleship_Game
 TEMPLATE = app
 
 
-SOURCES += Sources/main.cpp\
-    Sources/enemy.cpp \
-        Sources/mainwindow.cpp \
-    Sources/cpu.cpp \
-    Sources/battleshipgame.cpp \
-    Sources/displayships.cpp \
-    Sources/selectship.cpp \
-    Sources/boardsquare.cpp \
-    Sources/player.cpp \
-    Sources/human.cpp \
-    Sources/gameships.cpp \
-    Sources/cpuships.cpp \
-    Sources/blast.cpp
+SOURCES += main.cpp\
+    enemy.cpp \
+        mainwindow.cpp \
+    cpu.cpp \
+    battleshipgame.cpp \
+    displayships.cpp \
+    selectship.cpp \
+    boardsquare.cpp \
+    player.cpp \
+    human.cpp \
+    gameships.cpp \
+    cpuships.cpp \
+    blast.cpp
 
-HEADERS  += Headers/mainwindow.h \
-    Headers/cpu.h \
-    Headers/enemy.h \
-    Headers/vars.h \
-    Headers/battleshipgame.h \
-    Headers/displayships.h \
-    Headers/selectship.h \
-    Headers/boardsquare.h \
-    Headers/player.h \
-    Headers/human.h \
-    Headers/gameships.h \
-    Headers/cpuships.h \
-    Headers/blast.h
+HEADERS  += mainwindow.h \
+    cpu.h \
+    enemy.h \
+    vars.h \
+    battleshipgame.h \
+    displayships.h \
+    selectship.h \
+    boardsquare.h \
+    player.h \
+    human.h \
+    gameships.h \
+    cpuships.h \
+    blast.h
 
 FORMS    += mainwindow.ui
 
