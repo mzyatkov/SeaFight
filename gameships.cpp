@@ -2,7 +2,7 @@
 #include "vars.h"
 #include <vector>
 
-gameships::gameships(short int sn)
+gameships::gameships(int sn)
 {
     placed = false;
     direction = Right;
@@ -35,7 +35,7 @@ gameships::~gameships()
 }
 
 
-void gameships::setDirection(short int direct)
+void gameships::setDirection(int direct)
 {
     switch(direct)
     {
@@ -147,9 +147,9 @@ void gameships::removeThisShip(MYPOINT* theGrid[WID][LEN])
     placed = false;
 }
 
-bool gameships::getHitAt(short int x,short int y)
+bool gameships::getHitAt(int x,int y)
 {
-    short int thepointtouched = pointTouched(x,y);
+    int thepointtouched = pointTouched(x,y);
     if(thepointtouched != -1)
     {
         if(hitpoints[thepointtouched] == true)
@@ -162,7 +162,7 @@ bool gameships::getHitAt(short int x,short int y)
     return false;
 }
 
-short int gameships::pointTouched(short int x, short int y)
+int gameships::pointTouched(int x, int y)
 {
     for(int q=0;q<size;++q)
     {
@@ -175,7 +175,7 @@ short int gameships::pointTouched(short int x, short int y)
 }
 
 
-bool shipsAreInLine(MYPOINT* theGrid[WID][LEN], QPoint beginSquare, short int size, bool toRight)
+bool shipsAreInLine(MYPOINT* theGrid[WID][LEN], QPoint beginSquare, int size, bool toRight)
 {
     if(toRight)
     {

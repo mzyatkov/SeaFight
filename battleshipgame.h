@@ -34,12 +34,13 @@ public:
     Blast *blastanimation;
     Human* humanplayer;
     CPU* cpuplayer;
-    short int gamephase;
+
+    int gamephase;
     QGraphicsRectItem *HumanSquares[WID][LEN];
     boardsquare *CPUsquares[WID][LEN];
     QGraphicsRectItem *HumanGridPointsShot[WID*LEN];
-    short int NumberOfHumanGridPointsShot;
-    short int animeframes;
+    int NumberOfHumanGridPointsShot;
+    int animeframes;
 
     cpuships *cpuship[4];
 

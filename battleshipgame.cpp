@@ -23,8 +23,8 @@ BattleshipGame::~BattleshipGame()
 
 bool BattleshipGame::hasLost(MYPOINT* Grid[WID][LEN])
 {
-    short int w;
-    short int l;
+    int w;
+    int l;
 
     for(w = 0; w < WID; ++w)//WATCH OUT!!! Here, I'm making w and l less than their maximum places. If the grid is not set up like a normal array, this may cause a problem.
     {

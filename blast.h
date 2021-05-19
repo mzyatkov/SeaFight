@@ -13,7 +13,7 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
     void advance();
-    short int blastframe;
+    int blastframe;
 
 protected:
     void advance(int phase);

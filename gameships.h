@@ -6,25 +6,25 @@
 #include "vars.h"
 
 
-bool shipsAreInLine(MYPOINT* theGrid[WID][LEN], QPoint beginSquare, short int size, bool toRight);
+bool shipsAreInLine(MYPOINT* theGrid[WID][LEN], QPoint beginSquare, int size, bool toRight);
 
 
 
 class gameships
 {
 public:
-    gameships(short int sn);
+    gameships(int sn);
     ~gameships();
-    void setDirection(short int direct);
+    void setDirection(int direct);
     bool placeThisShip(MYPOINT* theGrid[WID][LEN], QPoint noseSquare);
     void removeThisShip(MYPOINT* theGrid[WID][LEN]);
-    bool getHitAt(short int x,short int y);
-    short int pointTouched(short int x, short int y);
+    bool getHitAt(int x,int y);
+    int pointTouched(int x, int y);
 
     bool placed;
-    short int direction;
-    short int shipnum;
-    short int size;
+    int direction;
+    int shipnum;
+    int size;
     QVector<QPoint> points;
     QVector<bool> hitpoints;
 };

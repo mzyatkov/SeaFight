@@ -110,9 +110,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //emit Sunk(2);
     //emit Sunk(3);
 
-    /*for(short int x = 0; x < WID; ++x)
+    /*for(int x = 0; x < WID; ++x)
     {
-        for(short int y = 0; y < LEN; ++y)
+        for(int y = 0; y < LEN; ++y)
         {
             if(x > (y*.5) && x < (y*2) && y > (x*.5) && y < (x*2))      //Down-Right
             {
@@ -126,9 +126,9 @@ MainWindow::MainWindow(QWidget *parent) :
     /*
     //Set WID and LEN to 15 for this code to work well
     emit SendDothis(7,7,64);
-    for(short int x = -7; x < WID-7; ++x)
+    for(int x = -7; x < WID-7; ++x)
     {
-        for(short int y = -7; y < LEN-7; ++y)
+        for(int y = -7; y < LEN-7; ++y)
         {
             if(x > -(y*.5) && x < -(y*2) && y < -(x*.5) && y > -(x*2))
             {
@@ -361,7 +361,7 @@ void MainWindow::on_pushButton_2_clicked()
     {
         displayships::phaseIsSetupShips = false;
 
-        for(short int ship = 0; ship < 4; ++ship)
+        for(int ship = 0; ship < 4; ++ship)
         {
             if(displayships::orientations[ship] == 0)
             {
@@ -376,7 +376,7 @@ void MainWindow::on_pushButton_2_clicked()
 //DEBUG CODE
 /*            QPen apen(Qt::black);
             QBrush abrush(Qt::red);
-            for(short int pos = 0; pos < ship+2; ++pos)
+            for(int pos = 0; pos < ship+2; ++pos)
                 bsg->scene->addRect(bsg->humanplayer->PlayerShips[ship]->points[pos].x()*SQUARE, bsg->humanplayer->PlayerShips[ship]->points[pos].y()*SQUARE, SQUARE, SQUARE, apen, abrush);
 */
         }
@@ -431,7 +431,7 @@ void MainWindow::on_pushButton_3_clicked()
     {
         displayships::phaseIsSetupShips = false;
 
-        for(short int ship = 0; ship < 4; ++ship)
+        for(int ship = 0; ship < 4; ++ship)
         {
             if(displayships::orientations[ship] == 0)
             {
@@ -446,7 +446,7 @@ void MainWindow::on_pushButton_3_clicked()
 //DEBUG CODE
 /*            QPen apen(Qt::black);
             QBrush abrush(Qt::red);
-            for(short int pos = 0; pos < ship+2; ++pos)
+            for(int pos = 0; pos < ship+2; ++pos)
                 bsg->scene->addRect(bsg->humanplayer->PlayerShips[ship]->points[pos].x()*SQUARE, bsg->humanplayer->PlayerShips[ship]->points[pos].y()*SQUARE, SQUARE, SQUARE, apen, abrush);
 */
         }

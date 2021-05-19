@@ -18,22 +18,22 @@ enum gamephases
 
 struct point
 {
-    short int shipis;
+    int shipis;
     bool hit;
 };
 typedef struct point MYPOINT;
 
 struct cpupoint
 {
-    short int shipis;
-    short int pointis;
+    int shipis;
+    int pointis;
 };
 typedef struct cpupoint CPU_POINT;
 
 struct targetpoint
 {
-    short int x;
-    short int y;
+    int x;
+    int y;
     CPU_POINT cpupnt;
 };
 typedef struct targetpoint TARGET_POINT;

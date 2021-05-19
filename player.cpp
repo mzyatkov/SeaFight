@@ -39,7 +39,7 @@ Player::~Player()
     }
 }
 
-bool Player::placeShip(short int thisship, int x, int y)//x and y are grid coords
+bool Player::placeShip(int thisship, int x, int y)//x and y are grid coords
 {
     QPoint theSquare;
     theSquare.setX(x);
@@ -51,7 +51,7 @@ bool Player::placeShip(short int thisship, int x, int y)//x and y are grid coord
     }
 return false;
 }
-void Player::removeShip(short int thisship)
+void Player::removeShip(int thisship)
 {
     if(thisship > 0 && PlayerShips[thisship-1]->placed == true)
     {

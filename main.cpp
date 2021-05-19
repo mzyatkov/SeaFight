@@ -2,6 +2,7 @@
 #include "displayships.h"
 #include <QApplication>
 #include <QTime>
+#include <QRandomGenerator>
 
 bool displayships::phaseIsSetupShips = true;
 bool displayships::allocated[] = {false,false,false,false};
@@ -12,9 +13,6 @@ int displayships::y_pos[] = {0,0,0,0};
 
 int main(int argc, char *argv[])
 {
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
-
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
