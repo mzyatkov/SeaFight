@@ -7,6 +7,7 @@
 #include "boardsquare.h"
 #include "cpuships.h"
 #include "blast.h"
+#include "enemy.h"
 #include <QObject>
 #include <QString>
 #include <QGraphicsRectItem>
@@ -26,6 +27,7 @@ public:
     void changetoCPUTurn();
     void changefromPlayerTurn();
     void changefromCPUTurn();
+
     void changetoGameOver(bool humanWon);
 
     QGraphicsScene *scene;
@@ -35,6 +37,7 @@ public:
     Human* humanplayer;
     CPU* cpuplayer;
 
+    bool isOnline;
     int gamephase;
     QGraphicsRectItem *HumanSquares[WID][LEN];
     boardsquare *CPUsquares[WID][LEN];

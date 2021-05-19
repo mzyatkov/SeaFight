@@ -5,15 +5,15 @@
 #include "player.h"
 #include "gameships.h"
 #include <QRandomGenerator>
-
+#include <QDebug>
 
 class CPU : public Player
 {
 public:
     CPU();
     virtual ~CPU();
-    TARGET_POINT Turn(int, int, MYPOINT* OPGrid[WID][LEN]);
-    TARGET_POINT CPU_Turn(MYPOINT* OPGrid[WID][LEN]);
+    virtual TARGET_POINT Turn(int, int, MYPOINT* OPGrid[WID][LEN]);
+    virtual TARGET_POINT CPU_Turn(MYPOINT* OPGrid[WID][LEN]);
     bool setUpCPUShips();
 
     bool isDeciding;

@@ -182,6 +182,7 @@ void MainWindow::DrawLayout()
 
 void MainWindow::NewGame()
 {
+    qDebug()<<"new game";
     delete bsg->cpuplayer;
     bsg->blastanimation->blastframe = 0;
     bsg->animeframes = 0;
@@ -229,8 +230,14 @@ void MainWindow::NewGame()
     ui->pushButton_3->setEnabled(false);
     ui->pushButton_3->setText("Begin Multi");
     ui->phaselabel->setText("Place Ships");
-    bsg->cpuplayer = new CPU();
 
+    if (bsg->isOnline) {
+        qDebug()<<"create enemy";
+        bsg->cpuplayer = new Enemy();
+    } else {
+          qDebug()<<"create cpu";
+        bsg->cpuplayer = new CPU();
+    }
     DrawLayout();
 
     bsg->humanplayer->selship[0] = new selectship(bsg->scene3, 3);
@@ -357,6 +364,7 @@ void MainWindow::onPhaseTextSet(QString newtext)
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    bsg->isOnline = false;
     if(bsg->gamephase == placeships)
     {
         displayships::phaseIsSetupShips = false;
@@ -412,7 +420,7 @@ void MainWindow::on_pushButton_2_clicked()
             break;
         }
 
-        ui->pushButton_2->setText("New Singlep");
+        ui->pushButton_2->setText("New Single");
         ui->pushButton_3->setText("New Multi");
 
         // TEST CODE
@@ -427,6 +435,8 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    bsg->isOnline = true;
+
     if(bsg->gamephase == placeships)
     {
         displayships::phaseIsSetupShips = false;

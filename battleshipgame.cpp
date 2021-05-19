@@ -3,12 +3,16 @@
 #include "blast.h"
 
 
-
 BattleshipGame::BattleshipGame()
 {
     gamephase = placeships;
     humanplayer = new Human();
-    cpuplayer = new CPU();
+    isOnline = false;
+    if(!isOnline) {
+        cpuplayer = new CPU();
+    } else {
+        cpuplayer = new Enemy();
+    }
     NumberOfHumanGridPointsShot = 0;
     animeframes = 0;
     blastanimation = new Blast(0,0);

@@ -89,6 +89,7 @@ TARGET_POINT CPU::Turn(int, int, MYPOINT* OPGrid[WID][LEN])
 //WATCH OUT!!! In the functions, x = W and y = L. This may cause a problem if something else happens.
 TARGET_POINT CPU::CPU_Turn(MYPOINT* OPGrid[WID][LEN])
 {
+    qDebug()<<"i,m cpu";
     static TARGET_POINT* lasttarget = 0;
     if(lasttarget == 0)
     {
