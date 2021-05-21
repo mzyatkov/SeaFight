@@ -1,12 +1,11 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-12-04T21:11:47
+# Project created by QtCreator 2021-03-12T21:11:47
 #
 #-------------------------------------------------
 
 QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += widgets
 
 TARGET = Battleship_Game
 TEMPLATE = app

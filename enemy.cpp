@@ -2,7 +2,7 @@
 
 Enemy::Enemy()
 {
-    isCPU = true;
+    isEnemy = true;
     isDeciding = false;
     for(int w = 0; w < WID; ++w)
     {
