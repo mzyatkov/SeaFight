@@ -62,7 +62,7 @@ void Player::removeShip(int thisship)
 TARGET_POINT Player::fireAtPoint(MYPOINT* OPGrid[WID][LEN], gameships* OPShips[4])
 {
     TARGET_POINT doubtingPoint;
-    if(isCPU)
+    if(isCPU || isEnemy)
     {
         targetedPoint = Turn(0,0,OPGrid);
         targetedPoint.cpupnt.shipis = OPGrid[targetedPoint.x][targetedPoint.y]->shipis;

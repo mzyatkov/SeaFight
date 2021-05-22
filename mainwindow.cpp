@@ -364,8 +364,14 @@ void MainWindow::onPhaseTextSet(QString newtext)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    bsg->isOnline = false;
-    if(bsg->gamephase == placeships)
+    if (bsg->unitialized) {
+        bsg->cpuplayer = new CPU;
+        bsg->unitialized = false;
+        bsg->isOnline = false;
+    }
+    if (bsg->gamephase == placeships && bsg->isOnline == true) {
+        return;
+    } else if(bsg->gamephase == placeships &&  bsg->isOnline == false)
     {
         displayships::phaseIsSetupShips = false;
 
@@ -429,15 +435,22 @@ void MainWindow::on_pushButton_2_clicked()
     }
     else
     {
+        bsg->isOnline = false;
         NewGame();
     }
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    bsg->isOnline = true;
 
-    if(bsg->gamephase == placeships)
+    if (bsg->unitialized) {
+        bsg->cpuplayer = new Enemy;
+        bsg->unitialized = false;
+        bsg->isOnline = true;
+    }
+    if (bsg->gamephase == placeships && bsg->isOnline == false) {
+        return;
+    } else if(bsg->gamephase == placeships && bsg->isOnline == true)
     {
         displayships::phaseIsSetupShips = false;
 
@@ -501,6 +514,7 @@ void MainWindow::on_pushButton_3_clicked()
     }
     else
     {
+        bsg->isOnline = true;
         NewGame();
     }
 }

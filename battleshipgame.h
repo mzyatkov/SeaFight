@@ -21,6 +21,8 @@ Q_OBJECT
 public:
     BattleshipGame();
     ~BattleshipGame();
+    bool unitialized;
+
     bool hasLost(MYPOINT* Grid[WID][LEN]);
     bool allHumanShipsArePlaced();
     void changetoPlayerTurn();

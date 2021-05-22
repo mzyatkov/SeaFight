@@ -13,8 +13,6 @@ Enemy::Enemy()
             CPUGrid[w][l]->shipis = 0;
         }
     }
-    hits = new int;
-    *hits = 0;
     direction = new int;
     *direction = NoD;
     target = new TARGET_POINT;
@@ -31,58 +29,19 @@ TARGET_POINT Enemy::Turn(int, int, MYPOINT *OPGrid[WID][LEN])
 TARGET_POINT Enemy::CPU_Turn(MYPOINT *OPGrid[WID][LEN])
 {
     qDebug()<<"i,m enemy";
-    static TARGET_POINT* lasttarget = 0;
-    if(lasttarget == 0)
+    target->x = 1;
+    target->y = 1;
+    qDebug()<<"received enemy point";
+    OPGrid[target->x][target->y]->hit = true;
+    if(OPGrid[target->x][target->y]->shipis > 0)
     {
-        lasttarget = new TARGET_POINT;
+        CPUGrid[target->x][target->y]->pointis = hit;
+        if(shipIsSunk(OPGrid, target))
+            revealShipToCPUGrid(CPUGrid, OPGrid, target);
     }
-    if(target->cpupnt.pointis == hit)
-    {
-        lasttarget->cpupnt = target->cpupnt;
-        lasttarget->x = target->x;
-        lasttarget->y = target->y;
-    }
-
-    findTarget(CPUGrid, target);
-
-    CPUFire(CPUGrid, OPGrid, hits, target, lasttarget, direction);
-
-    if(target->cpupnt.shipis != 0)
-    {
-            *hits = 0;
-            resetMSPoints(CPUGrid);
-            findUnidentifiedShips(CPUGrid, hits, lasttarget);
-
-            return *target;
-    }
-    else if(target->cpupnt.pointis == hit)
-    {
-
-        switch(*hits)
-        {
-        case 1:
-            suspectPoints(CPUGrid, target);
-
-            break;
-        case 2:
-            cutOffMSPoints(CPUGrid, target, direction);
-            suspectPoint(CPUGrid, target, direction);
-
-            break;
-        default:
-            suspectPoint(CPUGrid, target, direction);
-
-            break;
-        }
-    }
-
-    if(howmanyMSPoints(CPUGrid) == 0)
-    {
-        *hits = 0;
-        findUnidentifiedShips(CPUGrid, hits, lasttarget);
-
-    }
-
+    else
+        CPUGrid[target->x][target->y]->pointis = miss;
+    target->cpupnt = *CPUGrid[target->x][target->y];
     return *target;
 }
 

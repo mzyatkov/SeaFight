@@ -6,6 +6,7 @@
 Human::Human()
 {
     isCPU = false;
+    isEnemy = false;
     //displayships
     //selectships
 }

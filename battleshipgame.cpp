@@ -7,12 +7,12 @@ BattleshipGame::BattleshipGame()
 {
     gamephase = placeships;
     humanplayer = new Human();
-    isOnline = false;
-    if(!isOnline) {
-        cpuplayer = new CPU();
-    } else {
-        cpuplayer = new Enemy();
-    }
+    unitialized= true;
+//    if(!isOnline) {
+//        cpuplayer = new CPU();
+//    } else {
+//        cpuplayer = new Enemy();
+//    }
     NumberOfHumanGridPointsShot = 0;
     animeframes = 0;
     blastanimation = new Blast(0,0);
